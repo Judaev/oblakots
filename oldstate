@@ -1,0 +1,15 @@
+const state = {
+  category: [
+    { id: 1, title: 'Дома', todos: [ {todo:'Убраться', completed: false}, 
+                                     {todo:'Приготовить', completed: false}, 
+                                     {todo:'Сделать', completed: false}]},
+
+    { id: 2, title: 'Работа', todos: [ {todo:'Позвонить', completed: false}, 
+                                       {todo:'Договориться', completed: false}, 
+                                       {todo:'Написать', completed: false}, ]},
+
+    { id: 3, title: 'Магазин', todos: [ {todo:'Купить', completed: false}, 
+                                        {todo:'Найти', completed: false}, 
+                                        {todo:'Заказать', completed: false}, ]},
+  ]
+}
