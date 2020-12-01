@@ -16,6 +16,7 @@ const Fab: React.FC<IModal> = ({onModal}) => (
 
 const styles = StyleSheet.create({
   fab: {
+    backgroundColor: 'blue',
     position: 'absolute',
     margin: 16,
     right: 0,

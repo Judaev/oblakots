@@ -1,50 +1,56 @@
 import React, { useState } from 'react'
-import { Alert, View, StyleSheet } from 'react-native'
-import { Button, TextInput  } from 'react-native-paper';
+import {  View, StyleSheet } from 'react-native'
+import { Button, TextInput, Appbar } from 'react-native-paper';
 
 const AddTodo: React.FC = (props) => {
 
-  const [valuee, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>('')
 
-  let value: string = ''
-
-  let newTodo: string = ''
-
-  let onChangeText = () => {
-    newTodo = value
+  let onChange = (text: string) => {
+    setValue(text)
   }
 
-  let addTodo = (message: string) => {
-    let newTodoItem = {
-      title: newTodo,
-      completed: false
-    }
+  const pressButton = () => {
+    props.addTodo(value)
+    setValue('')
   }
 
   return (
     <View style={styles.main}>
-      <TextInput style={styles.input} onChangeText={setValue} value={value} placeholder='Введите задачу...' autoCorrect={false} autoCapitalize='none' />
-      <Button  mode="contained" onPress={addTodo}>
-        Press me
-      </Button>
+
+      <Appbar.Header style={styles.header}>
+        <Appbar.BackAction onPress={props.hideModal} />
+        <Button icon='check-bold'  mode="contained" onPress={pressButton} />
+      </Appbar.Header>
+      
+      <View>
+        <TextInput mode='outlined' style={styles.input} onChangeText={ text => onChange(text) } value={value} placeholder='Название задачи' autoCorrect={false} autoCapitalize='none' />  
+      </View>
+         
+        
+      {/* <View style={styles.category}>
+        <Title>Категории</Title>
+        { props.state.map( item => <Category category={item.category} /> ) }
+      </View> */}
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   main: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
   },
   input: {
-    width: '70%',
-    height: 40,
-    padding: 5,
-    borderColor: 'grey',
-    borderWidth: 1
+    paddingTop: 10,
+    fontSize: 20,
+    borderColor: '#fff'
   },
   button: {
     width: '30%',
+  },
+  header: {
+    justifyContent: 'space-between',
   }
 })
 

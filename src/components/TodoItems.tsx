@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Title, List, Text } from 'react-native-paper'
+import { Title, List } from 'react-native-paper'
 import TodoItem from './TodoItem'
 
 interface Todos {
@@ -11,19 +11,28 @@ interface Todos {
   id: number
   finished: []
   text: string
+  completed: boolean
+  setComp: boolean
 }
 
 const TodoItems: React.FC<Todos> = (props) => {
   return (
     <View style={styles.main}>
       <Title style={styles.category}>{props.category}</Title>
-        <View style={styles.items}>{ props.todos.map( todos => <TodoItem text={todos.title} key={todos.id} /> ) }</View>
+        <View style={styles.items}>{ props.todos.map( todos => <TodoItem key={todos.id} text={todos.title} setComp={todos.completed} /> ) }</View>
         <List.Section>
-          <List.Accordion
-            title="Завершенные задачи">
-              {/* <Text>{ props.finished.map( f => <List.Item title={f.text} /> )}</Text> */}
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
+          <List.Accordion title="Завершенные">
+
+            {
+              props.todos.map( item => {
+                if(item.completed = true) {
+                  return <List.Item title={item.title} />  
+                }
+              })
+            }
+            
+            
+            {/* <List.Item title="Второе задание" /> */}
           </List.Accordion>
       </List.Section>
     </View>
@@ -36,12 +45,19 @@ const styles = StyleSheet.create({
   },
   category: {
     paddingLeft: 15,
-    color: '#999999'
+    color: '#999999',
+    textTransform: 'uppercase',
+    fontSize: 16
   },
   items: {
     flexDirection: 'column',
     width: '100%',
-
+  },
+  list: {
+    fontSize: 18
+  },
+  listItem: {
+    textDecorationLine: 'line-through'
   }
 })
 

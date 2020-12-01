@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Тестовое задание компании  oblakogroup.ru\nКандидат Юдаев Денис\nJudaevDenis",
+    "githubUrl": "https://github.com/Judaev/oblakots"
   }
 }
